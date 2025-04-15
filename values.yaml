@@ -46,6 +46,16 @@ serviceAccount:
   name: ""
 
 components:
+  frontend-proxy:
+    ingress:
+      enabled: true
+      annotations: {}
+      hosts:
+        - host: proxy-my-otel-demo.apps.swo.apps.openshift.demoes.live
+          paths:
+            - path: /
+              pathType: Prefix
+              port: 8080
   ## Demo Components are named objects (services) with several properties
   # demoService:
   ## Enable the component (service)
@@ -364,8 +374,6 @@ components:
       env: true
     service:
       port: 8080
-      nodePort: 30080
-      type: NodePort
     env:
       - name: ENVOY_PORT
         value: "8080"
